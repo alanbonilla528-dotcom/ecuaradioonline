@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcuaRadioOnline — Portal de Emisoras</title>
+  <meta name="description" content="Escucha EcuaRadioOnline y emisoras amigas: tres streams en un solo portal." />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="Logo Ecua Radio Online" class="logo" />
+        <span>EcuaRadioOnline</span>
+      </div>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#en-vivo">En vivo</a>
+        <a href="#programacion">Programación</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container">
+      <h1>La casa de la música ecuatoriana</h1>
+      <p>Un portal con varias emisoras: tu radio y las de tus amigos en un solo lugar.</p>
+      <a class="btn" href="#en-vivo">▶ Escuchar ahora</a>
+    </div>
+  </main>
+
+  <section id="en-vivo" class="section">
+    <div class="container">
+      <h2>Escuchar en vivo</h2>
+
+      <div class="station-switcher">
+        <button class="tab active" data-station="0">Ecua Radio</button>
+        <button class="tab" data-station="1">Radio Amigo 1</button>
+        <button class="tab" data-station="2">Radio Amigo 2</button>
+      </div>
+
+      <div class="player-card">
+        <h3 id="station-title">Ecua Radio</h3>
+        <audio id="player" controls preload="none">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <div class="now">
+          <span id="now-playing">▶ Lista para reproducir…</span>
+        </div>
+      </div>
+
+      <p class="note">💡 Reemplaza las URLs de ejemplo en <code>config.js</code> con tus verdaderos streams (Shoutcast/Icecast: .mp3/.aac). Si un stream no arranca, prueba cambiar a <strong>http/https</strong> correcto.</p>
+    </div>
+  </section>
+
+  <section id="programacion" class="section">
+    <div class="container">
+      <h2>Programación</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Amanecer Andino</h3>
+          <p>Lun–Vie · 06:00–09:00</p>
+        </div>
+        <div class="card">
+          <h3>Clásicos del Pasillo</h3>
+          <p>Lun–Vie · 12:00–14:00</p>
+        </div>
+        <div class="card">
+          <h3>Noches de Bomba</h3>
+          <p>Vie–Sáb · 20:00–23:00</p>
+        </div>
+        <div class="card">
+          <h3>Entrevistas & Cultura</h3>
+          <p>Dom · 10:00–12:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section">
+    <div class="container">
+      <h2>Contacto</h2>
+      <form name="contacto" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contacto" />
+        <div class="row">
+          <label>Nombre
+            <input type="text" name="name" required>
+          </label>
+          <label>Email
+            <input type="email" name="email" required>
+          </label>
+        </div>
+        <label>Mensaje
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 EcuaRadioOnline.com — Portal de emisoras</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

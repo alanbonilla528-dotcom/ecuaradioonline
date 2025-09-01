@@ -1,0 +1,25 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;color:#0b1320;background:#f6f8fb;line-height:1.6}
+.header{position:sticky;top:0;background:#0b1320;color:#fff;z-index:10}
+.container{width:min(1100px,92%);margin:auto}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.logo{width:36px;height:36px;margin-right:8px}
+.brand{display:flex;align-items:center;font-weight:700}
+header nav a{color:#e8eefc;text-decoration:none;margin-left:14px}
+header nav a:hover{opacity:.9;text-decoration:underline}
+.hero{background:linear-gradient(120deg,#e9f1ff,#fdf3f4);padding:64px 0;text-align:center}
+.hero .btn{display:inline-block;margin-top:10px}
+.section{padding:44px 0}
+.station-switcher{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{border:1px solid #cfd7ea;background:#fff;padding:10px 14px;border-radius:8px;cursor:pointer}
+.tab.active{background:#0b1320;color:#fff;border-color:#0b1320}
+.player-card{background:#fff;border:1px solid #e5e9f3;border-radius:12px;padding:16px}
+.player-card audio{width:100%;max-width:520px;display:block;margin:8px auto}
+.now{margin-top:6px;font-size:.95rem;color:#3a4861}
+.note{font-size:.9rem;color:#43506a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #e5e9f3;border-radius:12px;padding:16px}
+.btn{background:#0b1320;color:#fff;padding:10px 16px;border-radius:8px;border:none;text-decoration:none;cursor:pointer}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,textarea{width:100%;padding:10px;border:1px solid #cfd7ea;border-radius:8px}
+.footer{background:#0b1320;color:#cfe0ff;padding:18px 0;text-align:center;margin-top:20px}
+@media (max-width:680px){.row{grid-template-columns:1fr}}
