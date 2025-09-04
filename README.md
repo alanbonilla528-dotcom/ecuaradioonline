@@ -13,9 +13,19 @@ Listo para publicar en **Cloudflare Pages** o cualquier hosting estático.
 ## ⚙️ Configuración rápida
 1. Abre `config.js` y reemplaza:
    ```js
-   "https://STREAM_URL_1"
-   "https://STREAM_URL_2"
-   "https://STREAM_URL_3"
+   // config.js
+const STATIONS = [
+  { 
+    name: "Ecua Radio – La casa de la música ecuatoriana", 
+    url: "https://sonicpanel.streamsolutions.us/8010/stream", 
+    tagline: "La casa de la música ecuatoriana" 
+  },
+  { 
+    name: "Ecua Radio Online – Música variada", 
+    url: "https://sonicpanel.streamsolutions.us/8026/stream", 
+    tagline: "Música variada para todos" 
+  }
+];
    ```
    por tus URLs reales (Shoutcast/Icecast).
 2. Sube todos los archivos a tu repositorio.
