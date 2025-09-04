@@ -27,7 +27,4 @@ const STATIONS = [
   }
 ];
    ```
-   por tus URLs reales (Shoutcast/Icecast).
-2. Sube todos los archivos a tu repositorio.
-3. Publica con Cloudflare Pages (Framework: None, Build: vacío, Output: `/`).
-4. (Opcional) Conecta tu dominio `www.ecuaradioonline.com` desde **Custom domains**.
+   
