@@ -4,8 +4,8 @@
 - `index.html` → estructura del sitio
 - `styles.css` → estilos (responsive)
 - `config.js` → [
-](https://sonicpanel.streamsolutions.us/8010/stream)- `script.js` → lógica del reproductor
-- `logo.png` y `favicon.png` → imágenes simples de relleno
+](https://sonicpanel.streamsolutions.us/8010/stream)-
+`script.js` → lógica del reproductor
 
 ## ⚙️ Configuración rápida
 1. Abre `config.js` y reemplaza:
