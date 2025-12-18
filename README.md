@@ -3,8 +3,8 @@
 ## 📦 Archivos
 - `index.html` → estructura del sitio
 - `styles.css` → estilos (responsive)
-- `config.js` → **aquí pones tus URLs de stream**
-- `script.js` → lógica del reproductor
+- `config.js` → [
+](https://sonicpanel.streamsolutions.us/8010/stream)- `script.js` → lógica del reproductor
 - `logo.png` y `favicon.png` → imágenes simples de relleno
 
 ## ⚙️ Configuración rápida
