@@ -1,1 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecua Radio Online – La casa de la música ecuatoriana</title>
+  <meta name="description" content="Escucha Ecua Radio Online en vivo. La casa de la música ecuatoriana, streaming 24/7." />
 
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1b33;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.75);
+      --soft:rgba(255,255,255,.12);
+      --brand1:#7c3aed;
+      --brand2:#2563eb;
+      --wa:#25D366;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(124,58,237,.35), transparent),
+                  radial-gradient(900px 500px at 80% 20%, rgba(37,99,235,.35), transparent),
+                  var(--bg);
+      color:var(--text);
+      text-align:center;
+    }
+    header{
+      padding:42px 18px 26px;
+    }
+    .brand{
+      display:inline-block;
+      background: linear-gradient(135deg, var(--brand1), var(--brand2));
+      padding: 18px 18px;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      max-width: 980px;
+      width: calc(100% - 24px);
+    }
+    header h1{
+      margin:0;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+    header p{
+      margin:10px 0 0;
+      opacity:.9;
+    }
+    main{
+      padding: 18px 14px 34px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width: 100%;
+      max-width: 980px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 860px){
+      .wrap{
+        grid-template-columns: 1.1fr .9fr;
+        align-items:start;
+      }
+    }
+    .card{
+      background: rgba(15,27,51,.9);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+    .card h2{
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+    }
+    .sub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    audio{
+      width: 100%;
+      margin-top: 8px;
+    }
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration:none;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn-wa{
+      background: var(--wa);
+      border-color: rgba(0,0,0,.05);
+      color:#04230f;
+    }
+    .btn-wa:hover{ filter: brightness(0.95); }
+    .tiny{
+      margin-top: 10px;
+      font-size: .88rem;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* Rating */
+    .stars{
+      display:flex;
+      justify-content:center;
+      gap:6px;
+      margin: 8px 0 6px;
+    }
+    .stars button{
+      font-size: 28px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,.35);
+      padding: 0;
+      line-height: 1;
+    }
+    .stars button.active{ color: gold; }
+    #ratingText{ margin: 6px 0 0; color: var(--muted); }
+
+    /* Comments */
+    .form{
+      display:grid;
+      gap: 10px;
+      justify-items:center;
+    }
+    input, textarea{
+      width: min(520px, 100%);
+      padding: 12px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .list{
+      margin-top: 16px;
+      text-align:left;
+      display:grid;
+      gap: 10px;
+    }
+    .comment{
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .comment .meta{
+      font-size: .9rem;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 6px;
+    }
+    .comment .text{
+      white-space: pre-wrap;
+      line-height: 1.35;
+    }
+    footer{
+      padding: 18px 12px 26px;
+      font-size: .85rem;
+      color: rgba(255,255,255,.60);
+    }
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 14px 0;
+      border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <h1>Ecua Radio Online</h1>
+      <p>La casa de la música ecuatoriana</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- RADIO -->
+      <section class="card">
+        <h2>🔴 En vivo</h2>
+        <p class="sub">Toca ▶️ para activar el sonido (autoplay puede iniciar en silencio).</p>
+
+        <audio id="player" controls autoplay muted playsinline preload="auto">
+          <source src="https://sonicpanel.streamsolutions.us/8010/stream" type="audio/mpeg">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+
+        <div class="row">
+          <button class="btn" id="btnSound">🔊 Activar sonido</button>
+          <button class="btn" id="btnPlay">▶️ Reproducir</button>
+          <button class="btn" id="btnPause">⏸️ Pausar</button>
+        </div>
+
+        <hr class="divider">
+
+        <!-- WHATSAPP -->
+        <h2>📲 Contáctanos</h2>
+        <p class="sub">Escríbenos directo por WhatsApp.</p>
+
+        <a class="btn btn-wa"
+           href="https://wa.me/19524069360?text=Hola%20Ecua%20Radio%20Online%2C%20quiero%20enviar%20un%20saludo%20%F0%9F%93%BB%F0%9F%8E%B6"
+           target="_blank" rel="noopener">
+          WhatsApp: +1 952 406 9360
+        </a>
+
+        <div class="tiny">Si quieres cambiar el mensaje automático, te lo ajusto.</div>
+      </section>
+
+      <!-- RATING + COMENTARIOS -->
+      <section class="card">
+        <h2>⭐ Califica la radio</h2>
+        <p class="sub">Tu calificación se guarda en tu dispositivo.</p>
+
+        <div class="stars" aria-label="Calificación">
+          <button type="button" data-stars="1">★</button>
+          <button type="button" data-stars="2">★</button>
+          <button type="button" data-stars="3">★</button>
+          <button type="button" data-stars="4">★</button>
+          <button type="button" data-stars="5">★</button>
+        </div>
+        <p id="ratingText"></p>
+
+        <hr class="divider">
+
+        <h2>💬 Comentarios</h2>
+        <p class="sub">Deja tu mensaje. (En GitHub Pages se guarda en el navegador del visitante).</p>
+
+        <div class="form">
+          <input id="name" type="text" placeholder="Tu nombre" maxlength="40" />
+          <textarea id="message" placeholder="Escribe tu comentario..." maxlength="500"></textarea>
+          <button class="btn" id="btnSend">Enviar comentario</button>
+          <button class="btn" id="btnClear">Borrar mis comentarios</button>
+        </div>
+
+        <div class="list" id="commentsList"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Ecua Radio Online · Todos los derechos reservados
+  </footer>
+
+  <script>
+    // --- Audio controls ---
+    const player = document.getElementById("player");
+    document.getElementById("btnSound").addEventListener("click", async () => {
+      try{
+        player.muted = false;
+        await player.play();
+      }catch(e){
+        // Si el navegador bloquea, igual queda listo para que el usuario toque play.
+      }
+    });
+    document.getElementById("btnPlay").addEventListener("click", () => player.play());
+    document.getElementById("btnPause").addEventListener("click", () => player.pause());
+
+    // --- Rating (localStorage) ---
+    const ratingKey = "ecua_rating_v1";
+    const ratingText = document.getElementById("ratingText");
+    const starButtons = [...document.querySelectorAll(".stars button")];
+
+    function paintStars(n){
+      starButtons.forEach((b, i) => b.classList.toggle("active", i < n));
+      ratingText.textContent = n ? ("Gracias por calificar con " + n + " estrellas ⭐") : "";
+    }
+
+    function setRating(n){
+      localStorage.setItem(ratingKey, String(n));
+      paintStars(n);
+    }
+
+    starButtons.forEach(btn => {
+      btn.addEventListener("click", () => setRating(Number(btn.dataset.stars)));
+    });
+
+    const savedRating = Number(localStorage.getItem(ratingKey) || 0);
+    if(savedRating) paintStars(savedRating);
+
+    // --- Comments (localStorage) ---
+    const commentsKey = "ecua_comments_v1";
+    const list = document.getElementById("commentsList");
+
+    function loadComments(){
+      try{
+        return JSON.parse(localStorage.getItem(commentsKey) || "[]");
+      }catch{
+        return [];
+      }
+    }
+    function saveComments(arr){
+      localStorage.setItem(commentsKey, JSON.stringify(arr));
+    }
+    function render(){
+      const comments = loadComments().slice().reverse();
+      if(comments.length === 0){
+        list.innerHTML = '<div class="tiny">Aún no hay comentarios en este dispositivo.</div>';
+        return;
+      }
+      list.innerHTML = comments.map(c => `
+        <div class="comment">
+          <div class="meta"><strong>${escapeHtml(c.name || "Anónimo")}</strong> · ${new Date(c.time).toLocaleString()}</div>
+          <div class="text">${escapeHtml(c.message)}</div>
+        </div>
+      `).join("");
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    document.getElementById("btnSend").addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if(!message){
+        alert("Escribe un comentario primero 🙂");
+        return;
+      }
+
+      const comments = loadComments();
+      comments.push({ name, message, time: Date.now() });
+      saveComments(comments);
+
+      document.getElementById("message").value = "";
+      render();
+      alert("¡Gracias! Tu comentario fue guardado.");
+    });
+
+    document.getElementById("btnClear").addEventListener("click", () => {
+      if(confirm("¿Seguro que quieres borrar los comentarios guardados en este dispositivo?")){
+        localStorage.removeItem(commentsKey);
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
