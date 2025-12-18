@@ -1,7 +1,4 @@
-# EcuaRadioOnline — sitio estático (multi‑stream)
-
-Este proyecto es un **portal de radios** con 3 streams conmutables (botones).  
-Listo para publicar en **Cloudflare Pages** o cualquier hosting estático.
+# EcuaRadioOnline La casa de la musica ecuatoriana
 
 ## 📦 Archivos
 - `index.html` → estructura del sitio
@@ -19,12 +16,6 @@ const STATIONS = [
     name: "Ecua Radio – La casa de la música ecuatoriana", 
     url: "https://sonicpanel.streamsolutions.us/8010/stream", 
     tagline: "La casa de la música ecuatoriana" 
-  },
-  { 
-    name: "Ecua Radio Online – Música variada", 
-    url: "https://sonicpanel.streamsolutions.us/8026/stream", 
-    tagline: "Música variada para todos" 
-  }
-];
-   ```
+  
+
    
