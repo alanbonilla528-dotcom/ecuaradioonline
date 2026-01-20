@@ -3,287 +3,639 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" content="#0b1530" />
   <title>Ecua Radio Online</title>
 
   <style>
     :root{
-      --bg1:#050a16;
-      --bg2:#0b1020;
-      --glass: rgba(255,255,255,.08);
-      --glass2: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.14);
+      --bg1:#050a18;
+      --bg2:#071433;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.18);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --radius: 22px;
+      --muted: rgba(255,255,255,.66);
+      --blue1:#2b6cff;
+      --blue2:#1e3a8a;
+      --green1:#17c964;
+      --green2:#0f7a3c;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
+      font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,system-ui;
+      color: var(--text);
       background:
-        radial-gradient(1200px 800px at 20% 15%, rgba(156,92,255,.45), transparent 55%),
-        radial-gradient(900px 700px at 80% 35%, rgba(255,64,129,.25), transparent 55%),
-        radial-gradient(900px 700px at 55% 80%, rgba(0,205,255,.18), transparent 60%),
+        radial-gradient(1200px 600px at 30% 10%, rgba(59,130,246,.35), transparent 55%),
+        radial-gradient(900px 600px at 80% 35%, rgba(168,85,247,.28), transparent 55%),
+        radial-gradient(700px 500px at 40% 80%, rgba(34,197,94,.18), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
 
-    /* Estrellas suaves */
-    body:before{
+    /* “estrellas” de fondo */
+    body::before{
       content:"";
-      position:fixed; inset:-20px;
-      background:
-        radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,.6), transparent 55%),
-        radial-gradient(1.5px 1.5px at 35% 70%, rgba(255,255,255,.5), transparent 55%),
-        radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,.45), transparent 55%),
-        radial-gradient(1.2px 1.2px at 85% 75%, rgba(255,255,255,.35), transparent 55%),
-        radial-gradient(1.2px 1.2px at 55% 20%, rgba(255,255,255,.35), transparent 55%);
+      position:fixed; inset:0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.7), transparent 2px),
+        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.6), transparent 2px),
+        radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,.55), transparent 2px),
+        radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,.55), transparent 2px),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,.45), transparent 2px),
+        radial-gradient(2px 2px at 22% 45%, rgba(255,255,255,.35), transparent 3px);
       opacity:.55;
       pointer-events:none;
-      filter: blur(.2px);
     }
 
     .wrap{
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 26px 16px 40px;
+      width:min(520px, 92vw);
+      margin: 22px auto 40px;
+      padding-bottom: 30px;
     }
 
-    .header{
-      padding: 22px 18px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(118,62,255,.28), rgba(118,62,255,.16));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      text-align:center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .title{
-      font-size: 44px;
-      line-height:1.05;
-      margin: 0;
-      font-weight: 800;
-      letter-spacing:.2px;
-    }
-    .subtitle{
-      margin: 10px 0 0;
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    .card{
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--glass), var(--glass2));
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* Botón neón */
-    .live-btn{
-      width: 100%;
-      border: 0;
-      cursor: pointer;
+    .brand{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap: 12px;
-      padding: 16px 18px;
-      border-radius: 999px;
-      color: #fff;
-      font-weight: 800;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ff3b3b, #b80000);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.18) inset,
-        0 0 26px rgba(255,0,0,.45),
-        0 10px 30px rgba(0,0,0,.55);
-      position:relative;
-      overflow:hidden;
-    }
-    .live-btn:before{
-      content:"";
-      position:absolute; inset:-40px;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 55%);
-      transform: rotate(10deg);
-      opacity:.8;
-    }
-    .live-dot{
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: #ff2b2b;
-      box-shadow: 0 0 14px rgba(255,0,0,.8);
-      flex: 0 0 auto;
-    }
-    .live-btn.playing{
-      background: linear-gradient(180deg, #ffffff, #e9e9e9);
-      color:#111;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,.15) inset,
-        0 0 14px rgba(255,255,255,.25),
-        0 10px 30px rgba(0,0,0,.55);
-    }
-    .live-btn.playing .live-dot{
-      background:#00d26a;
-      box-shadow: 0 0 14px rgba(0,210,106,.7);
+      gap:12px;
+      margin: 8px 6px 14px;
     }
 
-    .hint{
-      margin-top: 12px;
-      text-align:center;
+    .logo{
+      width:42px; height:42px;
+      border-radius:12px;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.45), transparent 55%),
+        linear-gradient(145deg, rgba(59,130,246,1), rgba(168,85,247,1));
+      box-shadow: 0 10px 30px rgba(59,130,246,.35);
+      position:relative;
+      flex:0 0 auto;
+    }
+    .logo::after{
+      content:"🔊";
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      font-size:22px;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,.35));
+    }
+
+    .title h1{
+      font-size: 24px;
+      margin:0;
+      letter-spacing:.2px;
+      font-weight: 800;
+    }
+    .title p{
+      margin:4px 0 0;
       color: var(--muted);
       font-size: 14px;
     }
 
-    .section-title{
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow:hidden;
+    }
+
+    .section{
+      margin: 14px 0;
+      padding: 16px;
+    }
+
+    /* Botón grande escuchar */
+    .listenBtn{
+      width:100%;
+      border:0;
+      color:white;
+      padding: 16px 18px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      background:
+        radial-gradient(120px 60px at 30% 30%, rgba(255,255,255,.35), transparent 55%),
+        linear-gradient(180deg, rgba(59,130,246,.95), rgba(30,58,138,.95));
+      border: 1px solid rgba(147,197,253,.55);
+      box-shadow:
+        0 18px 40px rgba(37,99,235,.35),
+        inset 0 0 0 1px rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .listenBtn:active{ transform: translateY(1px); }
+
+    .playIcon{
+      width:0; height:0;
+      border-left: 16px solid rgba(255,255,255,.95);
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,.35));
+    }
+    .pauseIcon{
+      width:18px; height:18px;
+      border-radius:4px;
+      position:relative;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,.35));
+    }
+    .pauseIcon::before, .pauseIcon::after{
+      content:"";
+      position:absolute; top:0; bottom:0;
+      width:6px; border-radius:3px;
+      background: rgba(255,255,255,.95);
+    }
+    .pauseIcon::before{ left:2px; }
+    .pauseIcon::after{ right:2px; }
+
+    .hint{
+      margin-top: 10px;
+      color: rgba(255,255,255,.75);
+      font-size: 13px;
+      text-align:center;
+    }
+
+    /* Contact card */
+    .rowTitle{
       display:flex;
       align-items:center;
       gap:10px;
       margin: 0 0 6px;
-      font-size: 22px;
-      font-weight: 800;
+      font-weight:800;
+      font-size: 18px;
+    }
+    .badge{
+      width:26px;height:26px;
+      border-radius:8px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .sub{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-size:14px;
     }
 
-    .wa{
-      margin-top: 10px;
-      width:100%;
+    .waBtn{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap: 10px;
-      padding: 14px 16px;
-      border-radius: 999px;
+      gap:10px;
+      width:100%;
       text-decoration:none;
-      font-weight: 800;
-      color:#07270f;
-      background: linear-gradient(180deg, #3dff7f, #1fbf55);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.18) inset,
-        0 0 24px rgba(0,255,120,.35),
-        0 10px 30px rgba(0,0,0,.55);
+      color:white;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background:
+        radial-gradient(120px 60px at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+        linear-gradient(180deg, rgba(34,197,94,.95), rgba(15,122,60,.95));
+      border: 1px solid rgba(134,239,172,.55);
+      box-shadow: 0 16px 35px rgba(34,197,94,.22), inset 0 0 0 1px rgba(255,255,255,.10);
+      font-weight:900;
+      letter-spacing:.6px;
+      font-size: 18px;
+    }
+    .waLogo{
+      width:22px;height:22px; border-radius:50%;
+      background: rgba(255,255,255,.92);
+      display:grid; place-items:center;
+      color:#0f7a3c;
+      font-size:14px;
+      font-weight:900;
     }
 
-    .small{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height:1.35;
+    .smallNote{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.65);
+      font-size: 13px;
       text-align:center;
     }
 
-    .pwa{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px dashed rgba(255,255,255,.22);
-      color: rgba(255,255,255,.82);
-      font-size: 14px;
-      line-height:1.35;
-      background: rgba(0,0,0,.14);
+    /* Install button (PWA) */
+    .installBtn{
+      margin-top: 12px;
+      width:100%;
+      padding: 13px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(191,219,254,.32);
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      cursor:pointer;
+    }
+    .installBtn[hidden]{ display:none; }
+    .installIcon{
+      width:26px;height:26px;border-radius:9px;
+      background: linear-gradient(180deg, rgba(59,130,246,.9), rgba(30,58,138,.95));
+      display:grid; place-items:center;
+      border: 1px solid rgba(147,197,253,.4);
+      box-shadow: 0 12px 25px rgba(37,99,235,.25);
     }
 
-    /* Audio oculto */
-    audio{display:none}
+    /* Reviews */
+    .reviewsTitle{
+      font-weight: 900;
+      font-size: 20px;
+      margin: 2px 0 6px;
+    }
+    .avgRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,.88);
+    }
+    .starsStatic{
+      display:flex; gap:4px;
+    }
+    .star{
+      width:18px;height:18px;
+      display:inline-grid; place-items:center;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+      color: #fbbf24;
+      font-size: 16px;
+    }
 
-    /* Separación */
-    .spacer{height: 6px}
+    .ratePick{
+      display:flex;
+      gap:6px;
+      margin: 10px 0 10px;
+      justify-content:flex-start;
+      flex-wrap:wrap;
+    }
+    .ratePick button{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.9);
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight:800;
+      display:flex; align-items:center; gap:6px;
+    }
+    .ratePick button.active{
+      border-color: rgba(251,191,36,.7);
+      box-shadow: inset 0 0 0 1px rgba(251,191,36,.35);
+    }
+
+    .commentRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .commentRow input{
+      flex:1;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.9);
+      outline:none;
+      font-size: 15px;
+    }
+    .commentRow input::placeholder{ color: rgba(255,255,255,.55); }
+
+    .sendBtn{
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(147,197,253,.45);
+      background: linear-gradient(180deg, rgba(59,130,246,.95), rgba(30,58,138,.95));
+      color:white;
+      font-weight: 900;
+      cursor:pointer;
+      min-width: 110px;
+    }
+
+    .reviewList{
+      margin-top: 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .reviewItem{
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .avatar{
+      width:40px; height:40px;
+      border-radius: 50%;
+      background: radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.35), transparent 55%),
+                  linear-gradient(145deg, rgba(59,130,246,.85), rgba(168,85,247,.85));
+      border: 1px solid rgba(255,255,255,.18);
+      flex:0 0 auto;
+    }
+    .reviewBody{ flex:1; }
+    .reviewTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+    .name{
+      font-weight: 900;
+      font-size: 15px;
+    }
+    .date{
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .starsMini{
+      display:flex; gap:3px; margin: 4px 0 6px;
+    }
+    .text{
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .footerSpace{ height: 10px; }
+
+    /* iPhone safe area */
+    .safe{ padding-bottom: max(18px, env(safe-area-inset-bottom)); }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <main class="wrap safe">
 
-    <div class="header">
-      <h1 class="title">Ecua Radio<br/>Online</h1>
-      <p class="subtitle">La casa de la música ecuatoriana</p>
-    </div>
-
-    <div class="card">
-      <button id="playButton" class="live-btn" type="button" aria-label="Escuchar en vivo">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span id="playLabel">ESCUCHAR EN VIVO</span>
-      </button>
-
-      <div class="hint">Si no suena en iPhone, toca el botón una vez más.</div>
-
-      <div class="pwa">
-        ✅ <b>En iPhone:</b> botón Compartir → <b>Agregar a pantalla de inicio</b>.<br/>
-        ✅ <b>En Android:</b> aparecerá el botón <b>Instalar</b> (si tu navegador lo soporta).
+    <!-- Header -->
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="title">
+        <h1>Ecua Radio Online</h1>
+        <p>La casa de la música ecuatoriana</p>
       </div>
     </div>
 
-    <div class="card">
-      <div class="section-title">📱 Contáctanos</div>
-      <div style="color:var(--muted)">Escríbenos directo por WhatsApp.</div>
+    <!-- Listen -->
+    <section class="card section" aria-label="Radio en vivo">
+      <button id="playButton" class="listenBtn" type="button">
+        <span id="playIcon" class="playIcon" aria-hidden="true"></span>
+        <span id="playText">ESCUCHAR EN VIVO</span>
+      </button>
 
-      <a class="wa" href="https://wa.me/19524069360" target="_blank" rel="noopener">
-        <span aria-hidden="true">🟢</span> +1 952 406 9360
+      <p class="hint">Si no suena en iPhone, toca el botón una vez más (Safari a veces bloquea el primer play).</p>
+
+      <!-- Audio -->
+      <audio id="player" playsinline preload="none">
+        <!-- TU STREAM AQUÍ -->
+        <source id="streamSource" src="https://sonicpanel.streamsolutions.us/8010/stream" type="audio/mpeg">
+      </audio>
+    </section>
+
+    <!-- Contact -->
+    <section class="card section" aria-label="Contacto WhatsApp">
+      <div class="rowTitle">
+        <span class="badge" aria-hidden="true">📩</span>
+        <span>Contáctanos</span>
+      </div>
+      <p class="sub">Escríbenos directo por WhatsApp.</p>
+
+      <a class="waBtn"
+         href="https://wa.me/19524069360?text=Hola%20Ecua%20Radio%20Online%2C%20quiero%20informaci%C3%B3n."
+         target="_blank" rel="noopener">
+        <span class="waLogo" aria-hidden="true">☎</span>
+        <span>+1 952 406 9360</span>
       </a>
 
-      <div class="small">Si quieres cambiar el mensaje automático, te lo ajusto.</div>
-    </div>
+      <p class="smallNote">Si quieres cambiar el mensaje automático, te lo ajusto.</p>
 
-    <!-- Audio -->
-    <audio id="player" playsinline preload="none"></audio>
+      <button id="installBtn" class="installBtn" type="button" hidden>
+        <span class="installIcon" aria-hidden="true"></span>
+        <span><strong>Instalar App</strong></span>
+      </button>
+    </section>
 
-  </div>
+    <!-- Reviews -->
+    <section class="card section" aria-label="Calificaciones y comentarios">
+      <div class="reviewsTitle">Califica y deja un comentario</div>
+
+      <div class="avgRow">
+        <div class="starsStatic" aria-hidden="true">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.35">★</span>
+        </div>
+        <div id="avgText" style="color:rgba(255,255,255,.75); font-weight:800;">4.8 / 5</div_ALIGNMENT>
+      </div>
+
+      <div style="color:rgba(255,255,255,.75); font-size:13px; margin-bottom:6px;">
+        Elige tu calificación:
+      </div>
+
+      <div class="ratePick" role="group" aria-label="Elegir estrellas">
+        <button type="button" class="rateBtn" data-rate="1">★ 1</button>
+        <button type="button" class="rateBtn" data-rate="2">★ 2</button>
+        <button type="button" class="rateBtn" data-rate="3">★ 3</button>
+        <button type="button" class="rateBtn" data-rate="4">★ 4</button>
+        <button type="button" class="rateBtn" data-rate="5">★ 5</button>
+      </div>
+
+      <div class="commentRow">
+        <input id="commentInput" type="text" maxlength="180" placeholder="Escribe tu comentario..." />
+        <button id="sendBtn" class="sendBtn" type="button">Enviar</button>
+      </div>
+
+      <div id="reviewList" class="reviewList" aria-live="polite"></div>
+    </section>
+
+    <div class="footerSpace"></div>
+
+  </main>
 
   <script>
-    // ✅ PON AQUÍ TU STREAM REAL
-    const STREAM_URL = "https://sonicpanel.streamsolutions.us/8010/stream";
+    // ====== CONFIG ======
+    const STREAM_URL = "https://sonicpanel.streamsolutions.us/8010/stream"; // <-- si tu stream cambia, reemplaza aquí
+    const STORAGE_KEY = "ecuaradio_reviews_v1";
 
-    const btn = document.getElementById("playButton");
-    const label = document.getElementById("playLabel");
-    const radio = document.getElementById("player");
+    // ====== AUDIO ======
+    const playButton = document.getElementById("playButton");
+    const playIcon   = document.getElementById("playIcon");
+    const playText   = document.getElementById("playText");
+    const player     = document.getElementById("player");
+    const streamSource = document.getElementById("streamSource");
 
-    // Configurar src (mejor que <source> en iPhone)
-    radio.src = STREAM_URL;
-    radio.crossOrigin = "anonymous";
+    streamSource.src = STREAM_URL;
+    player.load();
 
-    function setPlayingUI(isPlaying){
-      if(isPlaying){
-        btn.classList.add("playing");
-        label.textContent = "PAUSAR TRANSMISIÓN";
-      } else {
-        btn.classList.remove("playing");
-        label.textContent = "ESCUCHAR EN VIVO";
+    let isPlaying = false;
+
+    async function togglePlay(){
+      try{
+        if(!isPlaying){
+          player.load();             // ayuda en iPhone cuando se “queda pegado”
+          await player.play();
+          isPlaying = true;
+          playIcon.className = "pauseIcon";
+          playText.textContent = "PAUSAR TRANSMISIÓN";
+        } else {
+          player.pause();
+          isPlaying = false;
+          playIcon.className = "playIcon";
+          playText.textContent = "ESCUCHAR EN VIVO";
+        }
+      } catch(err){
+        alert("Toca otra vez para activar el audio (Safari a veces bloquea el primer play).");
+        console.error(err);
       }
     }
 
-    // Cuando el audio se detenga por cualquier razón
-    radio.addEventListener("pause", ()=> setPlayingUI(false));
-    radio.addEventListener("ended", ()=> setPlayingUI(false));
-    radio.addEventListener("error", ()=> setPlayingUI(false));
+    playButton.addEventListener("click", togglePlay);
 
-    btn.addEventListener("click", async () => {
-      try{
-        if(radio.paused){
-          // Truco útil para Safari: recarga y luego play
-          radio.load();
-          await radio.play();
-          setPlayingUI(true);
-        } else {
-          radio.pause();
-          setPlayingUI(false);
-        }
-      } catch(err){
-        // Safari a veces bloquea el primer play; el usuario toca otra vez
-        alert("Toca otra vez para activar el audio (Safari a veces bloquea el primer play).");
-        console.error(err);
-        setPlayingUI(false);
-      }
+    // Si el audio se corta, actualiza estado visual
+    player.addEventListener("pause", () => {
+      isPlaying = false;
+      playIcon.className = "playIcon";
+      playText.textContent = "ESCUCHAR EN VIVO";
     });
+
+    // ====== PWA INSTALL BUTTON (Android / algunos navegadores) ======
+    let deferredPrompt = null;
+    const installBtn = document.getElementById("installBtn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+
+    installBtn.addEventListener("click", async () => {
+      if(!deferredPrompt){
+        alert("En iPhone: comparte → Agregar a pantalla de inicio.");
+        return;
+      }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+
+    // ====== REVIEWS (localStorage) ======
+    const rateBtns = Array.from(document.querySelectorAll(".rateBtn"));
+    const commentInput = document.getElementById("commentInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const reviewList = document.getElementById("reviewList");
+
+    let selectedRate = 5;
+
+    function setActiveRate(rate){
+      selectedRate = rate;
+      rateBtns.forEach(b => b.classList.toggle("active", Number(b.dataset.rate) === rate));
+    }
+    setActiveRate(5);
+
+    rateBtns.forEach(btn => {
+      btn.addEventListener("click", () => setActiveRate(Number(btn.dataset.rate)));
+    });
+
+    function loadReviews(){
+      try{
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      }catch(e){
+        return [];
+      }
+    }
+    function saveReviews(list){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function formatDate(ts){
+      const d = new Date(ts);
+      return d.toLocaleDateString("es-ES", { year:"numeric", month:"short", day:"numeric" });
+    }
+
+    function starsHtml(n){
+      let out = "";
+      for(let i=1;i<=5;i++){
+        out += `<span class="star" style="font-size:14px; opacity:${i<=n?1:.25}">★</span>`;
+      }
+      return out;
+    }
+
+    function renderReviews(){
+      const items = loadReviews();
+
+      if(items.length === 0){
+        reviewList.innerHTML = `
+          <div class="reviewItem">
+            <div class="avatar"></div>
+            <div class="reviewBody">
+              <div class="reviewTop">
+                <div class="name">Sé el primero en comentar</div>
+                <div class="date">Hoy</div>
+              </div>
+              <div class="starsMini">${starsHtml(5)}</div>
+              <div class="text">Cuéntanos qué te parece la radio 🙌</div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      reviewList.innerHTML = items.slice(0, 10).map(r => `
+        <div class="reviewItem">
+          <div class="avatar"></div>
+          <div class="reviewBody">
+            <div class="reviewTop">
+              <div class="name">${escapeHtml(r.name || "Anónimo")}</div>
+              <div class="date">${formatDate(r.ts)}</div>
+            </div>
+            <div class="starsMini">${starsHtml(r.rate)}</div>
+            <div class="text">${escapeHtml(r.text)}</div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[c]));
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = (commentInput.value || "").trim();
+      if(!text){
+        alert("Escribe un comentario primero 🙂");
+        commentInput.focus();
+        return;
+      }
+
+      const list = loadReviews();
+      list.unshift({
+        name: "Anónimo",
+        rate: selectedRate,
+        text,
+        ts: Date.now()
+      });
+      saveReviews(list);
+      commentInput.value = "";
+      renderReviews();
+      alert("¡Gracias por tu comentario! ✅");
+    });
+
+    renderReviews();
   </script>
 </body>
 </html>
