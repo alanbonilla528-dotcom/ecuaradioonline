@@ -402,24 +402,30 @@ if (installBtn) {
     }
   });
 }
-    
-  <script>
-  // BOTÓN ESCUCHAR EN VIVO
+<script>
+document.addEventListener('DOMContentLoaded', () => {
   const playButton = document.getElementById('playButton');
   const radio = document.getElementById('player');
 
-  if (playButton && radio) {
-    playButton.addEventListener('click', () => {
+  if (!playButton || !radio) return;
+
+  playButton.addEventListener('click', async () => {
+    try {
       if (radio.paused) {
-        radio.play();
+        radio.load();
+        await radio.play();
         playButton.innerHTML = '⏸ PAUSAR TRANSMISIÓN';
       } else {
         radio.pause();
-        playButton.innerHTML =
-          '<span class="live-dot"></span> ▶ ESCUCHAR EN VIVO';
+        playButton.innerHTML = '<span class="live-dot"></span> ▶ ESCUCHAR EN VIVO';
       }
-    });
-  }
+    } catch (err) {
+      alert('Toca otra vez para activar el audio');
+      console.error(err);
+    }
+  });
+});
 </script>
+
 </body>
 </html>
