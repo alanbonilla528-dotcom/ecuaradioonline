@@ -4,57 +4,136 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ecua Radio Online | La casa de la música ecuatoriana</title>
-  <meta name="description" content="Escucha Ecua Radio Online en vivo. La casa de la música ecuatoriana." />
+  <meta name="description" content="Ecua Radio Online - La casa de la música ecuatoriana. Escucha en vivo." />
 
   <style>
     :root{
-      --bg0:#05070d;
-      --bg1:#070a12;
-      --bg2:#0b1b2e;
-
+      --bg1:#070A12;
+      --bg2:#0B1B2E;
       --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.05);
+      --card2: rgba(255,255,255,.06);
       --stroke: rgba(255,255,255,.14);
-
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-
-      --y:#FFD166;
-      --b:#4CC9F0;
-      --r:#EF476F;
-      --g:#06D6A0;
-
-      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --muted: rgba(255,255,255,.7);
+      --brand1:#FFD166;   /* amarillo */
+      --brand2:#4CC9F0;   /* azul */
+      --brand3:#EF476F;   /* rojo */
+      --ok:#06D6A0;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
       --radius: 22px;
       --radius2: 16px;
-      --max: 1100px;
+      --max: 1080px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue";
       color: var(--text);
       background:
-        radial-gradient(900px 520px at 12% 10%, rgba(76,201,240,.20), transparent 62%),
-        radial-gradient(820px 520px at 88% 20%, rgba(239,71,111,.18), transparent 62%),
-        radial-gradient(900px 560px at 50% 110%, rgba(255,209,102,.18), transparent 62%),
+        radial-gradient(900px 500px at 15% 10%, rgba(76,201,240,.22), transparent 60%),
+        radial-gradient(800px 480px at 85% 20%, rgba(239,71,111,.20), transparent 60%),
+        radial-gradient(900px 560px at 50% 110%, rgba(255,209,102,.20), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
 
-    /* blobs */
-    .blob{ position:absolute; border-radius:999px; filter: blur(50px); opacity:.45; pointer-events:none; }
-    .b1{ width:360px;height:360px; left:-140px; top:120px; background:rgba(76,201,240,.55); }
-    .b2{ width:430px;height:430px; right:-180px; top:60px; background:rgba(239,71,111,.45); }
-    .b3{ width:560px;height:560px; left:18%; bottom:-260px; background:rgba(255,209,102,.38); }
+    /* Decorative blobs */
+    .blob{
+      position:absolute; inset:auto;
+      filter: blur(50px);
+      opacity:.45;
+      z-index:0;
+      border-radius:999px;
+      pointer-events:none;
+    }
+    .b1{ width:360px;height:360px; background:rgba(76,201,240,.55); left:-120px; top:120px;}
+    .b2{ width:420px;height:420px; background:rgba(239,71,111,.45); right:-160px; top:80px;}
+    .b3{ width:520px;height:520px; background:rgba(255,209,102,.40); left:20%; bottom:-240px;}
 
     .wrap{
-      position:relative; z-index:1;
+      position:relative;
+      z-index:1;
       max-width: var(--max);
-      margin:0 auto;
-      padding: 22px 16px 70px;
+      margin: 0 auto;
+      padding: 28px 16px 70px;
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width: 260px;
+    }
+
+    .logo{
+      width:54px;height:54px;
+      border-radius:16px;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(255,209,102,.9), rgba(76,201,240,.85), rgba(239,71,111,.85));
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    h1{
+      font-size: clamp(22px, 3.2vw, 34px);
+      margin:0;
+      letter-spacing:.2px;
+      line-height:1.1;
+    }
+    .tag{
+      margin:4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .top-actions{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      font-weight:600;
+      font-size: 14px;
+      display:inline-flex; gap:10px; align-items:center;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24);}
+    .btn:active{ transform: translateY(0px) scale(.99);}
+
+    .btn.primary{
+      border-color: rgba(255,209,102,.45);
+      background: linear-gradient(180deg, rgba(255,209,102,.22), rgba(255,209,102,.10));
+    }
+
+    main{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      main{ grid-template-columns: 1fr; }
     }
 
     .card{
@@ -66,148 +145,43 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-      margin: 10px 0 14px;
+    .player{
+      padding: 18px 18px 16px;
     }
-
-    .brand{
-      display:flex; align-items:center; gap:14px;
-      min-width: 280px;
-    }
-
-    .logo{
-      width:56px;height:56px;border-radius:18px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.32), transparent 60%),
-        linear-gradient(135deg, rgba(255,209,102,.9), rgba(76,201,240,.86), rgba(239,71,111,.86));
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
-    }
-
-    h1{
-      margin:0;
-      font-size: clamp(22px, 3.2vw, 34px);
-      line-height:1.05;
-      letter-spacing:.2px;
-    }
-
-    .tag{
-      margin-top:6px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .actions{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-    }
-
-    .btn{
-      appearance:none;
-      border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor:pointer;
-      transition: transform .12s ease, border-color .12s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,.22);
-      font-weight: 800;
-      font-size: 14px;
-      display:inline-flex; gap:10px; align-items:center;
-      user-select:none;
-      text-decoration:none;
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); }
-    .btn:active{ transform: translateY(0) scale(.99); }
-
-    .btn.primary{
-      border-color: rgba(255,209,102,.45);
-      background: linear-gradient(180deg, rgba(255,209,102,.22), rgba(255,209,102,.10));
-    }
-    .btn.whats{
-      border-color: rgba(6,214,160,.42);
-      background: rgba(6,214,160,.12);
-    }
-
-    .icon{ width:20px;height:20px; fill: rgba(255,255,255,.92); }
-
-    main{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 14px;
-      align-items:start;
-    }
-    @media (max-width: 900px){
-      main{ grid-template-columns: 1fr; }
-    }
-
-    /* HERO CARD */
-    .hero{
-      padding: 18px;
-      overflow:hidden;
-      position:relative;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(600px 260px at 20% 15%, rgba(76,201,240,.22), transparent 60%),
-        radial-gradient(560px 260px at 85% 25%, rgba(239,71,111,.18), transparent 60%),
-        radial-gradient(540px 320px at 50% 110%, rgba(255,209,102,.18), transparent 60%);
-      z-index:0;
-      pointer-events:none;
-    }
-    .hero > *{ position:relative; z-index:1; }
-
-    .live{
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      align-items:center;
+    .player-head{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
       margin-bottom: 12px;
     }
+    .now{
+      display:flex; align-items:center; gap:12px;
+    }
     .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 7px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(6,214,160,.35);
+      border:1px solid rgba(6,214,160,.35);
       background: rgba(6,214,160,.12);
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing:.3px;
-    }
-    .dot{ width:8px;height:8px;border-radius:999px;background: var(--g); box-shadow: 0 0 18px rgba(6,214,160,.65); }
-
-    .nowline{
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .nowtitle{
-      font-weight: 900;
-      margin: 2px 0 0;
+      color: rgba(255,255,255,.9);
+      font-weight:700;
+      font-size:12px;
       letter-spacing:.2px;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;background: var(--ok);
+      box-shadow: 0 0 18px rgba(6,214,160,.6);
     }
 
-    /* PLAYER */
-    .player{
-      margin-top: 10px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      padding: 14px;
-    }
-    .player-top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 10px; flex-wrap:wrap;
-      margin-bottom: 10px;
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      padding: 10px 0 0;
     }
 
     .play{
-      width:62px;height:62px;
-      border-radius: 20px;
+      width:58px;height:58px;
+      border-radius: 18px;
       border:1px solid rgba(255,255,255,.18);
       background:
         radial-gradient(22px 22px at 30% 30%, rgba(255,255,255,.22), transparent 60%),
@@ -221,37 +195,56 @@
     .play:hover{ transform: translateY(-1px); }
     .play:active{ transform: translateY(0px) scale(.99); }
 
-    .controls{
-      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
-      margin-top: 10px;
+    .icon{
+      width:22px;height:22px;
+      fill: rgba(255,255,255,.92);
     }
-    .group{ flex:1 1 260px; min-width: 240px; }
-    .label{ font-size:12px; color: var(--muted); margin-bottom: 6px; }
-    .range{ width:100%; accent-color: rgba(255,209,102,.95); }
+
+    .sliders{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex: 1 1 260px;
+      min-width: 240px;
+    }
+
+    .range{
+      width:100%;
+      accent-color: rgba(255,209,102,.95);
+    }
+
+    .small{
+      font-size: 12.5px;
+      color: var(--muted);
+    }
 
     .status{
       margin-top: 10px;
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
       color: var(--muted);
       font-size: 13px;
     }
 
-    /* SIDE CARD */
-    .side{
+    .aside{
       padding: 18px;
     }
-    .side h2{
+    .aside h2{
       margin:0 0 10px;
       font-size: 16px;
       letter-spacing:.2px;
     }
     .hint{
-      margin:0 0 12px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
+      margin: 0 0 12px;
     }
-    .pills{ display:flex; gap:10px; flex-wrap:wrap; }
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
     .pill{
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.06);
@@ -260,15 +253,21 @@
       color: rgba(255,255,255,.86);
       font-size: 13px;
     }
-    .sep{ height:1px; background: rgba(255,255,255,.12); margin: 14px 0; }
 
-    /* COMMENTS */
-    .comments{ margin-top: 14px; padding: 18px; }
-    .comments h2{ margin:0 0 10px; font-size: 16px; }
-
-    .row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 10px; }
+    .comments{
+      margin-top: 14px;
+      padding: 18px;
+    }
+    .comments h2{
+      margin:0 0 10px;
+      font-size: 16px;
+    }
+    .row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
     input, textarea{
-      width:100%;
+      width: 100%;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.14);
@@ -277,9 +276,12 @@
       outline:none;
     }
     input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
-    textarea{ min-height: 92px; resize: vertical; }
+    textarea{ min-height: 90px; resize: vertical; }
 
-    .stars{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding: 8px 0 6px; }
+    .stars{
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+      padding: 10px 0 6px;
+    }
     .star-btn{
       width: 40px; height: 40px;
       border-radius: 14px;
@@ -291,32 +293,79 @@
       user-select:none;
     }
     .star-btn:hover{ transform: translateY(-1px); border-color: rgba(255,209,102,.4); }
-    .star{ width:20px; height:20px; fill: rgba(255,255,255,.45); }
+    .star{
+      width:20px; height:20px;
+      fill: rgba(255,255,255,.45);
+    }
     .star.on{ fill: rgba(255,209,102,.95); }
-    .small{ font-size: 12.5px; color: var(--muted); }
 
-    .list{ margin-top: 12px; display:grid; gap: 10px; }
+    .list{
+      margin-top: 12px;
+      display:grid;
+      gap: 10px;
+    }
     .comment{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.14);
       border-radius: 16px;
       padding: 12px;
     }
-    .meta{
+    .comment .meta{
       display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
       color: var(--muted);
       font-size: 12.5px;
       margin-bottom: 6px;
     }
-    .text{ margin:0; color: rgba(255,255,255,.88); line-height:1.45; }
+    .comment .text{ margin:0; color: rgba(255,255,255,.88); line-height:1.45; }
 
-    /* PROMO */
-    footer{ margin-top: 16px; padding: 18px; }
-    .promo h3{ margin:0 0 6px; font-size: 18px; letter-spacing:.2px; }
-    .promo p{ margin:0; color: var(--muted); line-height:1.55; max-width: 760px; }
-    .tiny{ margin-top: 10px; color: rgba(255,255,255,.55); font-size: 12px; }
+    footer{
+      margin-top: 16px;
+      padding: 18px;
+    }
+    .promo{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .promo h3{
+      margin:0 0 6px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .promo p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.55;
+      max-width: 720px;
+    }
+    .whats{
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(6,214,160,.35);
+      background: rgba(6,214,160,.12);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+    }
+    .whats:hover{ border-color: rgba(6,214,160,.55); }
+    .sep{
+      height:1px;
+      background: rgba(255,255,255,.12);
+      margin: 14px 0;
+    }
 
-    /* focus */
+    .tiny{
+      margin-top: 10px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    /* Accessibility focus */
     :focus-visible{
       outline: 2px solid rgba(255,209,102,.85);
       outline-offset: 3px;
@@ -340,15 +389,15 @@
         </div>
       </div>
 
-      <div class="actions">
-        <button id="shareBtn" class="btn primary" type="button">
-          Compartir
+      <div class="top-actions">
+        <button id="shareBtn" class="btn primary" type="button" aria-label="Compartir Ecua Radio Online">
+          <span>Compartir</span>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18 16a3 3 0 0 0-2.39 1.2L8.91 13.7a3.2 3.2 0 0 0 0-3.4l6.7-3.5A3 3 0 1 0 15 5a3 3 0 0 0 .06.6l-6.7 3.5a3 3 0 1 0 0 5.8l6.7 3.5A3 3 0 1 0 18 16z"/>
           </svg>
         </button>
 
-        <a id="whatsShare" class="btn whats" href="#" target="_blank" rel="noopener">
+        <a class="btn" href="https://wa.me/19524069260" target="_blank" rel="noopener">
           WhatsApp
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.7 14.4c-.2.6-1 1.1-1.6 1.2-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.7-2 1-2.3c.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.5l1 2.3c.1.3.1.5 0 .7l-.4.6c-.1.2-.3.4-.1.7.2.3.8 1.3 1.8 2.1 1.2 1 2.2 1.3 2.6 1.4.3.1.5.1.7-.1l.8-1c.2-.2.4-.3.7-.2l2.4 1.1c.3.1.5.2.6.4.1.2.1.6 0 .9z"/>
@@ -358,36 +407,32 @@
     </header>
 
     <main>
-      <!-- HERO / PLAYER -->
-      <section class="card hero" aria-label="Reproductor Ecua Radio Online">
-        <div class="live">
-          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <!-- PLAYER -->
+      <section class="card player" aria-label="Reproductor de Ecua Radio Online">
+        <div class="player-head">
+          <div class="now">
             <div class="badge"><span class="dot" aria-hidden="true"></span> EN VIVO</div>
             <div>
-              <div class="nowline">Ahora suena:</div>
-              <div id="nowPlaying" class="nowtitle">Música en vivo (stream)</div>
+              <div style="font-weight:800; letter-spacing:.2px;">Escuchando: Ecua Radio Online</div>
+              <div class="small">Stream listo para reproducir</div>
             </div>
           </div>
-
-          <button id="copyStreamBtn" class="btn" type="button" title="Copiar enlace del stream">
-            Copiar link del audio
+          <button id="copyLinkBtn" class="btn" type="button" title="Copiar enlace del stream">
+            Copiar link
           </button>
         </div>
 
-        <div class="player">
-          <div class="player-top">
-            <button id="playBtn" class="play" type="button" aria-label="Reproducir / Pausar">
-              <svg id="playIcon" class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
-            </button>
+        <div class="controls">
+          <button id="playBtn" class="play" type="button" aria-label="Reproducir / Pausar">
+            <svg id="playIcon" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7z"></path>
+            </svg>
+          </button>
 
-            <div style="flex:1; min-width: 260px;">
-              <div class="label">Estado</div>
-              <div id="stateText" style="font-weight:900; letter-spacing:.2px;">Pausado</div>
-              <div class="small" style="margin-top:6px;">
-                Tip: en algunos celulares debes tocar Play 1–2 veces (bloqueo de autoplay).
-              </div>
+          <div class="sliders">
+            <div style="flex:1">
+              <div class="small">Volumen</div>
+              <input id="vol" class="range" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Volumen" />
             </div>
 
             <button id="muteBtn" class="btn" type="button" aria-label="Silenciar">
@@ -397,92 +442,81 @@
               </svg>
             </button>
           </div>
-
-          <div class="controls">
-            <div class="group">
-              <div class="label">Volumen</div>
-              <input id="vol" class="range" type="range" min="0" max="1" step="0.01" value="0.85" />
-            </div>
-
-            <div class="group">
-              <div class="label">Compartir rápido</div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button id="shareStreamBtn" class="btn primary" type="button">Compartir página</button>
-                <button id="copyPageBtn" class="btn" type="button">Copiar link página</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="status">
-            <div class="small">Stream:</div>
-            <div class="small" style="word-break:break-all;">https://sonicpanel.streamsolutions.us/8010/stream</div>
-          </div>
-
-          <audio id="audio" preload="none" crossorigin="anonymous">
-            <source src="https://sonicpanel.streamsolutions.us/8010/stream" type="audio/mpeg" />
-            Tu navegador no soporta audio HTML5.
-          </audio>
         </div>
+
+        <div class="status">
+          <div id="stateText">Estado: Pausado</div>
+          <div class="small">Tip: si no suena, toca “Play” otra vez (algunos móviles bloquean autoplay).</div>
+        </div>
+
+        <!-- Audio -->
+        <audio id="audio" preload="none" crossorigin="anonymous">
+          <source src="https://sonicpanel.streamsolutions.us/8010/stream" type="audio/mpeg" />
+          Tu navegador no soporta audio HTML5.
+        </audio>
       </section>
 
-      <!-- SIDE -->
-      <aside class="card side" aria-label="Opciones">
-        <h2>Opciones</h2>
+      <!-- INFO / SHARE -->
+      <aside class="card aside" aria-label="Información y opciones">
+        <h2>Comparte la radio</h2>
         <p class="hint">
-          Esta página funciona sin app. La gente entra con un enlace y escucha desde el navegador.
+          Comparte esta página con tus amigos. En celulares se abre el menú nativo de compartir.
+          En computadoras copiará el enlace automáticamente si no hay soporte.
         </p>
 
-        <div class="pills">
-          <span class="pill">✅ Fácil</span>
-          <span class="pill">📱 Móvil</span>
-          <span class="pill">⚡ Rápida</span>
-          <span class="pill">🎶 En vivo</span>
+        <div class="mini">
+          <span class="pill">✅ Fácil de usar</span>
+          <span class="pill">📱 Responsive</span>
+          <span class="pill">⚡ Ligero</span>
+          <span class="pill">🌎 Ecuador vibes</span>
         </div>
 
         <div class="sep"></div>
 
         <h2>Contacto</h2>
-        <p class="hint">¿Quieres una web para tu radio o negocio? Escríbeme:</p>
-        <a class="btn whats" href="https://wa.me/19524069260" target="_blank" rel="noopener">
+        <p class="hint">
+          ¿Quieres añadir una sección de programación, “Top canciones” o un chat en vivo? Se puede.
+        </p>
+        <a class="whats" href="https://wa.me/19524069260" target="_blank" rel="noopener">
           📱 WhatsApp: +1 952 406 9260
         </a>
 
         <div class="tiny">
-          Si tienes un logo (PNG/JPG), dime y te lo dejo puesto en el diseño.
+          Sugerencia: para poner tu logo real, cambia el bloque “.logo” por una imagen.
         </div>
       </aside>
     </main>
 
-    <!-- COMMENTS -->
+    <!-- COMMENTS + RATING -->
     <section class="card comments" aria-label="Comentarios y calificación">
       <h2>Comentarios & Calificación</h2>
 
       <div class="row">
-        <input id="name" type="text" placeholder="Tu nombre (opcional)" />
+        <input id="name" type="text" placeholder="Tu nombre (opcional)" aria-label="Nombre" />
       </div>
 
-      <div class="stars">
+      <div class="stars" aria-label="Calificación">
         <span class="small" style="min-width:130px;">Tu calificación:</span>
         <button class="star-btn" data-star="1" type="button" aria-label="1 estrella">
-          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
         </button>
         <button class="star-btn" data-star="2" type="button" aria-label="2 estrellas">
-          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
         </button>
         <button class="star-btn" data-star="3" type="button" aria-label="3 estrellas">
-          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
         </button>
         <button class="star-btn" data-star="4" type="button" aria-label="4 estrellas">
-          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
         </button>
         <button class="star-btn" data-star="5" type="button" aria-label="5 estrellas">
-          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.3l-6.2 3.7 1.6-7.1L2 8.9l7.2-.6L12 1.6l2.8 6.7 7.2.6-5.4 5 1.6 7.1z"/></svg>
         </button>
         <span id="ratingText" class="small" style="margin-left:6px;">(sin calificar)</span>
       </div>
 
       <div class="row">
-        <textarea id="msg" placeholder="Escribe tu comentario..."></textarea>
+        <textarea id="msg" placeholder="Escribe tu comentario..." aria-label="Comentario"></textarea>
       </div>
 
       <div class="row" style="justify-content:space-between; align-items:center;">
@@ -490,34 +524,30 @@
         <button id="clearBtn" class="btn" type="button" title="Borrar comentarios guardados en este dispositivo">Limpiar</button>
       </div>
 
-      <div class="list" id="list"></div>
+      <div class="list" id="list" aria-label="Lista de comentarios"></div>
     </section>
 
     <!-- PROMO -->
     <footer class="card" aria-label="Promoción">
       <div class="promo">
-        <h3>¿Quieres tu propia página web?</h3>
-        <p>
-          Te ayudamos a crear tu página web desde cero o a mejorar la que ya tienes. Ideal para radios online,
-          negocios pequeños, proyectos personales o ideas nuevas.<br><br>
-          Escríbenos y te orientamos paso a paso.<br>
-          <strong>📱 WhatsApp: +1 952 406 9260</strong>
-        </p>
-
-        <a class="btn whats" href="https://wa.me/19524069260" target="_blank" rel="noopener" style="margin-top:12px;">
-          Escribir por WhatsApp
-        </a>
-
-        <div class="tiny">© <span id="year"></span> Ecua Radio Online</div>
+        <div>
+          <h3>¿Quieres tu propia página web?</h3>
+          <p>
+            Te ayudamos a crear tu página web desde cero o a mejorar la que ya tienes. Ideal para radios online,
+            negocios pequeños, proyectos personales o ideas nuevas.<br><br>
+            Escríbenos y te orientamos paso a paso.
+          </p>
+          <a class="whats" href="https://wa.me/19524069260" target="_blank" rel="noopener">
+            📱 WhatsApp: +1 952 406 9260
+          </a>
+          <div class="tiny">© <span id="year"></span> Ecua Radio Online</div>
+        </div>
       </div>
     </footer>
   </div>
 
   <script>
-    // ================== CONFIG ==================
-    const STREAM_URL = "https://sonicpanel.streamsolutions.us/8010/stream";
-
-    // ================== AUDIO ==================
+    // ====== AUDIO PLAYER ======
     const audio = document.getElementById('audio');
     const playBtn = document.getElementById('playBtn');
     const playIcon = document.getElementById('playIcon');
@@ -525,7 +555,8 @@
     const muteBtn = document.getElementById('muteBtn');
     const muteText = document.getElementById('muteText');
     const stateText = document.getElementById('stateText');
-    const nowPlaying = document.getElementById('nowPlaying');
+
+    const STREAM_URL = "https://sonicpanel.streamsolutions.us/8010/stream";
 
     function setPlayIcon(isPlaying){
       playIcon.innerHTML = isPlaying
@@ -536,14 +567,14 @@
     async function togglePlay(){
       try{
         if(audio.paused){
-          // some browsers need src set on interaction
+          // Ensure source set (some browsers need it on interaction)
           if(!audio.src) audio.src = STREAM_URL;
           await audio.play();
         } else {
           audio.pause();
         }
       } catch(e){
-        stateText.textContent = "No se pudo reproducir (toca Play otra vez).";
+        stateText.textContent = "Estado: No se pudo reproducir (toca Play otra vez).";
         console.warn(e);
       }
     }
@@ -552,25 +583,13 @@
 
     audio.addEventListener('play', () => {
       setPlayIcon(true);
-      stateText.textContent = "Reproduciendo";
-      nowPlaying.textContent = "Música en vivo (stream)";
+      stateText.textContent = "Estado: Reproduciendo";
     });
 
     audio.addEventListener('pause', () => {
       setPlayIcon(false);
-      stateText.textContent = "Pausado";
+      stateText.textContent = "Estado: Pausado";
     });
-
-    audio.addEventListener('waiting', () => {
-      stateText.textContent = "Cargando...";
-    });
-
-    audio.addEventListener('error', () => {
-      stateText.textContent = "Error de audio. Reintenta.";
-    });
-
-    // init volume
-    audio.volume = Number(vol.value);
 
     vol.addEventListener('input', () => {
       audio.volume = Number(vol.value);
@@ -585,14 +604,14 @@
       muteText.textContent = audio.muted ? "Unmute" : "Mute";
     });
 
-    // ================== SHARE / COPY ==================
-    const shareBtn = document.getElementById('shareBtn');
-    const shareStreamBtn = document.getElementById('shareStreamBtn');
-    const copyPageBtn = document.getElementById('copyPageBtn');
-    const copyStreamBtn = document.getElementById('copyStreamBtn');
-    const whatsShare = document.getElementById('whatsShare');
+    // init volume
+    audio.volume = Number(vol.value);
 
-    function shareData(){
+    // ====== SHARE / COPY ======
+    const shareBtn = document.getElementById('shareBtn');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+
+    function getShareData(){
       return {
         title: "Ecua Radio Online",
         text: "Ecua Radio Online - La casa de la música ecuatoriana. Escucha en vivo.",
@@ -604,7 +623,8 @@
       try{
         await navigator.clipboard.writeText(text);
         return true;
-      } catch(e){
+      }catch(e){
+        // fallback
         const t = document.createElement('textarea');
         t.value = text;
         document.body.appendChild(t);
@@ -615,40 +635,28 @@
       }
     }
 
-    async function doNativeShare(){
-      const data = shareData();
+    shareBtn.addEventListener('click', async () => {
+      const data = getShareData();
       if(navigator.share){
-        try{ await navigator.share(data); } catch(e){}
+        try{
+          await navigator.share(data);
+        }catch(e){
+          // user canceled or not available
+        }
       } else {
         const ok = await copyText(data.url);
         shareBtn.textContent = ok ? "✅ Enlace copiado" : "❌ No se pudo copiar";
         setTimeout(() => shareBtn.innerHTML = 'Compartir <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.39 1.2L8.91 13.7a3.2 3.2 0 0 0 0-3.4l6.7-3.5A3 3 0 1 0 15 5a3 3 0 0 0 .06.6l-6.7 3.5a3 3 0 1 0 0 5.8l6.7 3.5A3 3 0 1 0 18 16z"/></svg>', 1400);
       }
-    }
-
-    shareBtn.addEventListener('click', doNativeShare);
-    shareStreamBtn.addEventListener('click', doNativeShare);
-
-    copyPageBtn.addEventListener('click', async () => {
-      const ok = await copyText(window.location.href);
-      copyPageBtn.textContent = ok ? "✅ Copiado" : "❌ Error";
-      setTimeout(() => copyPageBtn.textContent = "Copiar link página", 1200);
     });
 
-    copyStreamBtn.addEventListener('click', async () => {
+    copyLinkBtn.addEventListener('click', async () => {
       const ok = await copyText(STREAM_URL);
-      copyStreamBtn.textContent = ok ? "✅ Copiado" : "❌ Error";
-      setTimeout(() => copyStreamBtn.textContent = "Copiar link del audio", 1200);
+      copyLinkBtn.textContent = ok ? "✅ Copiado" : "❌ Error";
+      setTimeout(() => copyLinkBtn.textContent = "Copiar link", 1200);
     });
 
-    // WhatsApp share link
-    function setWhatsAppLink(){
-      const text = encodeURIComponent("Escucha Ecua Radio Online en vivo: " + window.location.href);
-      whatsShare.href = "https://wa.me/?text=" + text;
-    }
-    setWhatsAppLink();
-
-    // ================== COMMENTS + RATING ==================
+    // ====== COMMENTS + RATING (LocalStorage) ======
     const nameEl = document.getElementById('name');
     const msgEl = document.getElementById('msg');
     const sendBtn = document.getElementById('sendBtn');
@@ -658,13 +666,18 @@
     const starBtns = Array.from(document.querySelectorAll('.star-btn'));
 
     let currentRating = 0;
-    const KEY = "ecua_radio_comments_v2";
+    const KEY = "ecua_radio_comments_v1";
 
     function loadComments(){
-      try{ return JSON.parse(localStorage.getItem(KEY) || "[]"); }
-      catch(e){ return []; }
+      try{
+        return JSON.parse(localStorage.getItem(KEY) || "[]");
+      }catch(e){
+        return [];
+      }
     }
-    function saveComments(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+    function saveComments(arr){
+      localStorage.setItem(KEY, JSON.stringify(arr));
+    }
 
     function formatDate(ts){
       const d = new Date(ts);
@@ -691,11 +704,7 @@
     function renderList(){
       const data = loadComments().slice().reverse();
       if(!data.length){
-        listEl.innerHTML = `
-          <div class="comment">
-            <div class="meta">Aún no hay comentarios</div>
-            <p class="text">Sé el primero en dejar tu mensaje 🙌</p>
-          </div>`;
+        listEl.innerHTML = `<div class="comment"><div class="meta">Aún no hay comentarios</div><p class="text">Sé el primero en dejar tu mensaje 🙌</p></div>`;
         return;
       }
 
@@ -710,14 +719,17 @@
               <div style="letter-spacing:.4px; color:rgba(255,209,102,.95)">${stars}</div>
             </div>
             <p class="text">${safeMsg}</p>
-          </div>`;
+          </div>
+        `;
       }).join("");
     }
 
     sendBtn.addEventListener('click', () => {
       const message = msgEl.value.trim();
-      if(!message){ msgEl.focus(); return; }
-
+      if(!message){
+        msgEl.focus();
+        return;
+      }
       const arr = loadComments();
       arr.push({
         name: nameEl.value.trim(),
@@ -726,7 +738,6 @@
         ts: Date.now()
       });
       saveComments(arr);
-
       msgEl.value = "";
       currentRating = 0;
       renderStars();
