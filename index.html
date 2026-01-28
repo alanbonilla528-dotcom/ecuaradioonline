@@ -205,6 +205,30 @@
       }
     }
   </script>
+<!-- ✅ BOTÓN INSTALAR APP FUNCIONAL -->
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
 
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // ✅ Mostrar botón al final
+    installBtn.style.display = "block";
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    // ✅ Mostrar ventana de instalación
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+
+    // ✅ Ocultar botón después
+    installBtn.style.display = "none";
+    deferredPrompt = null;
+  });
+</script>
 </body>
 </html>
